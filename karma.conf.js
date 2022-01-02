@@ -29,10 +29,12 @@ module.exports = function (config) {
       subdir: '.',
       reporters: [
         { type: 'html' },
-        { type: 'text-summary' }
+        { type: 'text' },
+        // { type: 'text-summary' }
       ]
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['dots', 'kjhtml'],
+    // reportSlowerThan: 10,
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

@@ -1,11 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { LetterPickerComponent } from './letter-picker/letter-picker.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        LetterPickerComponent
       ],
     }).compileComponents();
   });
@@ -19,13 +21,13 @@ describe('AppComponent', () => {
   it(`should have as title 'wordler'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('wordler');
+    expect(app.title).toEqual('Wordler Solver');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('wordler app is running!');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Wordler Solver');
   });
 });

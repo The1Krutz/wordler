@@ -1,0 +1,10 @@
+<div class="picker-main" *ngIf="letter != 'default'">
+  <p class="picker-section">
+    <span class="letter-label">{{letter | uppercase}}</span>
+
+    <select #status (change)="onChange(status.value)">
+      <option *ngFor="let option of options">{{option.label}}</option>
+    </select>
+
+  </p>
+</div>
