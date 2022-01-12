@@ -5,18 +5,34 @@
 
 <div class="content" role="main">
 
-  <div class="letter-picker">
+  <div class="column letter-picker">
     <h2 class="letter-picker title">Letter Status</h2>
     <app-letter-picker *ngFor="let letter of letters" [letter]="letter" (updateLetter)="onLetterUpdate($event)">
     </app-letter-picker>
   </div>
 
-  <div class="word-suggestions">
+  <div class="column word-suggestions">
     <h2>Word Suggestions</h2>
+    <span>Words that most closely match the current information, and have the highest score of common letters
+      ({{wordSuggestionList.length}} remain) </span>
     <p *ngFor="let word of wordSuggestionList | slice : 0:25; index as i" (click)="tryWord(word)" class="clickable">
       {{i+1}} - {{word}}
     </p>
   </div>
 
+  <div class="column word-input">
+    <h2>Word Input</h2>
+    <span>Pick a specific word from the list so far</span>
 
+    <form class="example-form" (ngSubmit)="onSubmit()">
+      <input type="text" [formControl]="control" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let word of wordListAutocomplete | async | slice : 0:25" [value]="word">
+          {{word}}
+        </mat-option>
+      </mat-autocomplete><br /><br />
+      <button type="submit">try word</button>
+    </form>
+
+  </div>
 </div>

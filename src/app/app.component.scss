@@ -1,7 +1,6 @@
 
 div.letter-picker{
   padding:5px;
-  align-self:flex-start;
   display:grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(14, 1fr);
@@ -18,8 +17,9 @@ p.clickable{
   margin:3px;
 }
 
-div.word-suggestions{
+div.column{
   align-self:baseline;
+  max-width: 300px;
 }
 
 
