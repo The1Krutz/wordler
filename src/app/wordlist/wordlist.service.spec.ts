@@ -60,7 +60,7 @@ describe('WordlistService', () => {
       },
     ].forEach(e => {
       it(`should return a filtered list when ${e.title}`, () => {
-        const result = service.getFilteredWordList(e.filters);
+        const result = service.getMostLikelyWordsList(e.filters);
         expect(result.length).toEqual(e.expectedLength);
       })
     });

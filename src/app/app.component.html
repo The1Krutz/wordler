@@ -14,8 +14,17 @@
   <div class="column word-suggestions">
     <h2>Word Suggestions</h2>
     <span>Words that most closely match the current information, and have the highest score of common letters
-      ({{wordSuggestionList.length}} remain) </span>
-    <p *ngFor="let word of wordSuggestionList | slice : 0:25; index as i" (click)="tryWord(word)" class="clickable">
+      ({{mostLikelyWordsList.length}} remain) </span>
+    <p *ngFor="let word of mostLikelyWordsList | slice : 0:25; index as i" (click)="tryWord(word)" class="clickable">
+      {{i+1}} - {{word}}
+    </p>
+  </div>
+
+  <div class="column word-suggestions">
+    <h2>Word Suggestions</h2>
+    <span>Words that rule out as many letters as possible that haven't yet been guessed
+      ({{rulesOutMostLettersList.length}} remain) </span>
+    <p *ngFor="let word of rulesOutMostLettersList | slice : 0:25; index as i" (click)="tryWord(word)" class="clickable">
       {{i+1}} - {{word}}
     </p>
   </div>

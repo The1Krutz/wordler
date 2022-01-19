@@ -7,9 +7,23 @@ import { Letter } from '../types/letter';
 })
 export class WordlistService {
 
-  constructor() { }
+  public preScoredWordList: { [word: string]: number } = {};
 
-  public getFilteredWordList(filter: Letter[] = []): string[] {
+  constructor() {
+    // const t0 = performance.now();
+    // const t1 = performance.now();
+    // console.log(`sorting words list took ${t1 - t0}ms`);
+
+    for (const word of this._wordlist) {
+      this.preScoredWordList[word] = this.wordScore(word);
+    }
+  }
+
+  public getAllWords() {
+    return this.getMostLikelyWordsList();
+  }
+
+  public getMostLikelyWordsList(filter: Letter[] = []): string[] {
     const results = this._wordlist
       .filter(word => {
         for (const letter of filter) {
@@ -33,12 +47,39 @@ export class WordlistService {
         }
         return true;
       })
-      .sort((a, b) => this.wordScore(b) - this.wordScore(a));
+      .sort((a, b) => this.preScoredWordList[b] - this.preScoredWordList[a]);
 
     return results;
   }
 
-  // new implementation gives no points for duplicate letters
+  public getRulesOutMostWordsList(filter: Letter[] = []): string[] {
+    const filterword = filter
+      .filter(z => z.accuracy !== Accuracy.Unknown)
+      .map(z => z.letter)
+      .join('');
+
+    const results = this._wordlist
+      .sort((a, b) => {
+        let a_score = 0, b_score = 0;
+
+        for (const letter in WordlistService._letterRanking) {
+          if (!filterword.includes(letter)) {
+            if (a.includes(letter)) {
+              a_score += WordlistService._letterRanking[letter];
+            }
+            if (b.includes(letter)) {
+              b_score += WordlistService._letterRanking[letter];
+            }
+          }
+        }
+
+        return b_score - a_score;
+      })
+
+    return results;
+  }
+
+  // score a word based on the value of its letters. Duplicate letters only give points for the first instance
   private wordScore(word: string): number {
     let score = 0;
     for (const letter in WordlistService._letterRanking) {

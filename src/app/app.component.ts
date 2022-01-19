@@ -17,7 +17,8 @@ export class AppComponent implements OnInit {
   letters: string[] = []
   filter: Letter[] = [];
 
-  wordSuggestionList: string[] = [];
+  mostLikelyWordsList: string[] = [];
+  rulesOutMostLettersList: string[] = [];
   wordListAutocomplete: Observable<string[]> = new Observable<string[]>();
 
   constructor(private wordlistService: WordlistService) { }
@@ -33,11 +34,12 @@ export class AppComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLocaleLowerCase();
-    return this.wordSuggestionList.filter(word => word.includes(filterValue));
+    return this.mostLikelyWordsList.filter(word => word.includes(filterValue));
   }
 
   public updateSuggestions() {
-    this.wordSuggestionList = this.wordlistService.getFilteredWordList(this.filter)
+    this.mostLikelyWordsList = this.wordlistService.getMostLikelyWordsList(this.filter)
+    this.rulesOutMostLettersList = this.wordlistService.getRulesOutMostWordsList(this.filter)
   }
 
   public onLetterUpdate(update: Letter) {
@@ -63,5 +65,7 @@ export class AppComponent implements OnInit {
         this.letters.push(letter);
       }
     }
+
+    this.letters.sort((a, b) => a.localeCompare(b));
   }
 }
