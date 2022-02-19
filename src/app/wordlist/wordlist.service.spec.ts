@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+
 import { Accuracy } from '../types/accuracy';
 import { Letter } from '../types/letter';
-
 import { WordlistService } from './wordlist.service';
 
 describe('WordlistService', () => {
@@ -62,7 +62,7 @@ describe('WordlistService', () => {
       it(`should return a filtered list when ${e.title}`, () => {
         const result = service.getMostLikelyWordsList(e.filters);
         expect(result.length).toEqual(e.expectedLength);
-      })
+      });
     });
   });
 });

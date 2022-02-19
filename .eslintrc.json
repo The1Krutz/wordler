@@ -1,0 +1,128 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@typescript-eslint/no-inferrable-types": "warn",
+        "@typescript-eslint/type-annotation-spacing": [
+          "warn",
+          {
+            "before": false,
+            "after": true
+          }
+        ],
+        "indent": "off", // disabled for typescript to take over
+        "@typescript-eslint/indent": [
+          "warn",
+          2,
+          {
+            "SwitchCase": 1
+          }
+        ],
+        "array-bracket-spacing": "warn",
+        "arrow-spacing": "warn",
+        "brace-style": [
+          "warn",
+          "1tbs",
+          {
+            "allowSingleLine": true
+          }
+        ],
+        "comma-spacing": "warn",
+        "eqeqeq": [
+          "warn",
+          "smart"
+        ],
+        "key-spacing": "warn",
+        "keyword-spacing": "warn",
+        "no-debugger": "warn",
+        "no-irregular-whitespace": "warn",
+        "no-multi-spaces": "warn",
+        "no-trailing-spaces": "warn",
+        "no-unreachable": "warn",
+        "no-unused-vars": "off", // disabled for typescript to take over
+        "@typescript-eslint/no-unused-vars": [
+          "warn"
+        ],
+        "no-whitespace-before-property": "warn",
+        "object-curly-spacing": [
+          "warn",
+          "always"
+        ],
+        "quotes": [
+          "warn",
+          "single",
+          {
+            "allowTemplateLiterals": true,
+            "avoidEscape": true
+          }
+        ],
+        "semi": [
+          "warn",
+          "always"
+        ],
+        "semi-spacing": "warn",
+        "sort-imports": [
+          "warn",
+          {
+            "allowSeparatedGroups": true,
+            "ignoreCase": true,
+            "ignoreDeclarationSort": true,
+            "ignoreMemberSort": false
+          }
+        ],
+        "space-before-blocks": "warn",
+        "space-in-parens": "warn",
+        "space-infix-ops": "off", // disabled for typescript to take over
+        "@typescript-eslint/space-infix-ops": [
+          "warn",
+          {
+            "int32Hint": false
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Accuracy } from '../types/accuracy';
 import { Letter } from '../types/letter';
 
@@ -74,7 +75,7 @@ export class WordlistService {
         }
 
         return b_score - a_score;
-      })
+      });
 
     return results;
   }
@@ -121,7 +122,7 @@ export class WordlistService {
       'z': 1.39,
       'j': 1.00,
       'q': 1,
-    }
+    };
 
   // ordinarily I'd put a private member at the top, but this is 15000 lines of just words so
   // I'm sticking it at the bottom to make everything else easier to read

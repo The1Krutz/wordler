@@ -6,8 +6,6 @@ import { Letter } from '../types/letter';
   selector: 'app-letter-picker',
   templateUrl: './letter-picker.component.html',
   styleUrls: ['./letter-picker.component.scss'],
-  inputs: ['letter']
-
 })
 export class LetterPickerComponent implements OnInit {
   @Input() letter = '';
@@ -17,9 +15,6 @@ export class LetterPickerComponent implements OnInit {
     label: string,
     value: Letter
   }[] = [];
-
-  constructor() {
-  }
 
   ngOnInit(): void {
     this.options = [
@@ -36,10 +31,10 @@ export class LetterPickerComponent implements OnInit {
       { label: 'Green-3', value: new Letter(this.letter, 2, Accuracy.Green) },
       { label: 'Green-4', value: new Letter(this.letter, 3, Accuracy.Green) },
       { label: 'Green-5', value: new Letter(this.letter, 4, Accuracy.Green) },
-    ]
+    ];
   }
 
   public onChange(option: string) {
-    this.updateLetter.emit(this.options.filter(z => z.label === option)[0].value)
+    this.updateLetter.emit(this.options.filter(z => z.label === option)[0].value);
   }
 }

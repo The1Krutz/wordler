@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Letter } from './types/letter';
-import { WordlistService } from './wordlist/wordlist.service';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
+
+import { Letter } from './types/letter';
+import { WordlistService } from './wordlist/wordlist.service';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,10 @@ import { startWith, map } from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Wordler Solver';
+  title = 'Wordler - A Wordle Solver';
 
   control = new FormControl('');
-  letters: string[] = []
+  letters: string[] = [];
   filter: Letter[] = [];
 
   mostLikelyWordsList: string[] = [];
@@ -38,8 +39,8 @@ export class AppComponent implements OnInit {
   }
 
   public updateSuggestions() {
-    this.mostLikelyWordsList = this.wordlistService.getMostLikelyWordsList(this.filter)
-    this.rulesOutMostLettersList = this.wordlistService.getRulesOutMostWordsList(this.filter)
+    this.mostLikelyWordsList = this.wordlistService.getMostLikelyWordsList(this.filter);
+    this.rulesOutMostLettersList = this.wordlistService.getRulesOutMostWordsList(this.filter);
   }
 
   public onLetterUpdate(update: Letter) {

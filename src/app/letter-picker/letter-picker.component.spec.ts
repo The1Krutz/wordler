@@ -8,9 +8,9 @@ describe('LetterPickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LetterPickerComponent ]
+      declarations: [LetterPickerComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
